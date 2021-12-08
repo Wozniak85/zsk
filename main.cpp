@@ -1,21 +1,53 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
 
-class Rectangle{
-	private:
-		double sideA, sideB;
+class Food{
 	public:
-		Rectangle();
-		Rectangle(double sideA, double sideB);
-		//prototyp konstruktora kopiujacego
-		Rectangle(const Rectangle &);
+		string Name, Taste;
+		float Weight, Callories;
+		
+		void getFood();
 };
 
+class VegetarianFood : public Food{
+	public:
+		string MeatPlaceHolder;
+		
+		void getFood();
+};
 
+class VeganFood : public VegetarianFood{
+	public:
+		string MilkPlaceHolder;
+		
+		void getFood();
+};
 
-int main(int argc, char** argv){
-	setlocale(LC_CTYPE, polish)	
-	
-	return 0;
+void Food::getFood(){
+	cout<<"Nazwa: "<<Name<<"\nSmak: "<<Taste<<"\nIloœæ: "<<Weight<<"g"<<"\nKalorie: "<<Callories<<"kcal"<<endl<<endl;
 }
 
+void VeganFood::getFood(){
+	cout<<"Nazwa: "<<Name<<"\nSmak: "<<Taste<<"\nIloœæ: "<<Weight<<"g"<<"\nKalorie: "<<Callories<<"kcal"<<"\nZastêpczy sk³adnik miêsa: "<<MeatPlaceHolder<<"\nZastêpczy sk³adnik miêsa: "<<MilkPlaceHolder<<endl<<endl;
+}
+
+int main(int argc, char** argv) {
+	setlocale(LC_CTYPE,"polish");
+	Food Pizza;
+	Pizza.Name="Pizza";
+	Pizza.Taste="S³ony";
+	Pizza.Weight=100;
+	Pizza.Callories=300;
+	Pizza.getFood();
+	
+	VeganFood VBurg;
+	VBurg.Name="Burger Vegañski";
+	VBurg.Taste="S³ony";
+	VBurg.Weight=630;
+	VBurg.Callories=1000;
+	VBurg.MeatPlaceHolder="Ciecierzyca";
+	VBurg.MilkPlaceHolder="Soja";
+	
+	VBurg.getFood();
+	return 0;
+}
